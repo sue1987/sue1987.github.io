@@ -253,8 +253,8 @@ function panZoom_JYU() {
 }
 
 function panZoom_HEY() {
-    zoomTo(9, 1000, function() {
-        map.panTo(new BMap.Point(GD_HYS.lng, GD_HYS.lat));
+    zoomTo(6, 1000, function() {
+        map.panTo(new BMap.Point(103.758427, 36.172333));
         setTimeout(function() {
             var start = new BMap.Point(MZ_JYU.lng, MZ_JYU.lat);
             var end   = new BMap.Point(GZ_GTC.lng, GZ_GTC.lat);
@@ -1084,7 +1084,7 @@ function showMarkerText() {
             loopAddMarker(markerText, function() {
                 setTimeout(function() {
                     slideDown('theEnd', 1000, function() {
-                        var theEndText = '<div id="theEndText">Happy birthday to my dearest baby :) --by wyh<br /> Thanks to LOO2K<br />' + 
+                        var theEndText = '<div id="theEndText">Happy birthday to my dearest baby :) --by wyh<br /> Thanks to LOO2K' + 
                                          '<button onclick="window.location.reload();">Again</button></div>';
                         document.getElementById('theEnd').innerHTML = theEndText;
                     });
