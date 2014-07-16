@@ -93,25 +93,11 @@ body {
     margin-top: -100px;
     height: 200px;
 }
-#theEnd2Text
-{
-    position: absolute;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    text-align: bottom;
-    font-size: 10px;
-    line-height: 2;
-    top: 50%;
-    margin-top: -100px;
-    height: 200px;
-}
     </style>
 </head>
 <body>
     <div id="loading">正在加载...</div>
     <div id="theEnd"></div>
-    <div id="theEnd2"></div>
     <div id="map"></div>
 
 <!-- 指定全局的分享内容 -->
@@ -1098,11 +1084,9 @@ function showMarkerText() {
             loopAddMarker(markerText, function() {
                 setTimeout(function() {
                     slideDown('theEnd', 1000, function() {
-                        var theEndText = '<div id="theEndText">Happy birthday to my dearest baby :) --by wyh<br />' + 
+                        var theEndText = '<div id="theEndText">Happy birthday to my dearest baby :) --by wyh<br /> Thanks to LOO2K<br />' + 
                                          '<button onclick="window.location.reload();">Again</button></div>';
-                        var theEnd2Text = '<div id="theEnd2Text">Thanks to LOO2K</div>'
                         document.getElementById('theEnd').innerHTML = theEndText;
-                        document.getElementById('theEnd2').innerHTML = theEnd2Text;
                     });
                 }, 5000);
             });
@@ -1174,8 +1158,64 @@ function init() {
 }
  
 function loadScript() {
-  var script = document.createElement("script");D
-  
+  var script = document.createElement("script");
+  script.src = "http://api.map.baidu.com/api?v=1.2&callback=initMap";
+  document.body.appendChild(script);
+}
+
+window.onload = function() {
+    var imglist = [
+//         'http://lukesign.qiniudn.com/images/ticket.jpg',
+//         'http://lukesign.qiniudn.com/images/beijingroad.jpg',
+//         'http://lukesign.qiniudn.com/images/chenjiaci.jpg',
+//         'http://lukesign.qiniudn.com/images/chenjiaci1.jpg',
+//         'http://lukesign.qiniudn.com/images/chenjiaci2.jpg',
+//         'http://lukesign.qiniudn.com/images/dianying.jpg',
+//         'http://lukesign.qiniudn.com/images/dress1.jpg',
+//         'http://lukesign.qiniudn.com/images/dress2.jpg',
+//         'http://lukesign.qiniudn.com/images/jiniantang.jpg',
+//         'http://lukesign.qiniudn.com/images/leave.jpg',
+//         'http://lukesign.qiniudn.com/images/s.jpg',
+//         'http://lukesign.qiniudn.com/images/sea.jpg',
+//         'http://lukesign.qiniudn.com/images/you.jpg',
+//         'http://lukesign.qiniudn.com/images/wannato/fenghuang.jpg',
+//         'http://lukesign.qiniudn.com/images/wannato/guilin.jpg',
+//         'http://lukesign.qiniudn.com/images/wannato/xiamen.jpg',
+//         'http://lukesign.qiniudn.com/images/wannato/xihu.jpg',
+//         'http://lukesign.qiniudn.com/images/wannato/xizang.jpg'
+    ];
+
+    soundManager.setup({
+        url: 'http://lukesign.qiniudn.com/sm/',
+        onready: initMP3
+    });
+
+    function initMP3() {
+
+        MUSIC = soundManager.createSound({
+            id: 'mp3',
+            url: './womenhaoxiangzainajianguo.mp3',
+            onload: function() {
+                preLoadImages(imglist, function() {
+                    setTimeout(function() {
+                        var loading = document.getElementById('loading');
+                        loading.style.cursor = 'pointer';
+                        loading.innerHTML = '点击开始';
+                        loading.onclick = function() {
+                            screenfull && screenfull.request();
+                            loadScript();
+                        }
+                    }, 3000);
+                });
+            }
+        });
+        MUSIC.load();
+    }
+    //var str = location.href;
+    //alert(str);
+
+   // var arr = str.split("/");
+
    // delete arr[arr.length-1];
 
    // var dir = arr.join("/");
